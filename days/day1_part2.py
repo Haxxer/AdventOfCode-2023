@@ -51,9 +51,8 @@ class Day1Part2(BaseUnitTest):
         return sum(results)
 
     def test_sample(self):
-        pass
-        #sample_result = self.run_day(self.sample)
-        #self.validate_sample(sample_result)
+        sample_result = self.run_day(self.sample)
+        self.validate_sample(sample_result)
 
     def test_input(self):
         input_result = self.run_day(self.input)
