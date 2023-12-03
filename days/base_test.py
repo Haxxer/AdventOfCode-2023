@@ -4,50 +4,72 @@ unittest.TestLoader.sortTestMethodsUsing = None
 class BaseUnitTest(unittest.TestCase):
 
     day = "1"
-    part = "1"
-    sample = ""
-    input = ""
-    expected_sample_result = 0
-    expected_input_result = 0
 
-    def run_day(self, input):
+    part_1_sample = ""
+    part_1_input = ""
+    part_2_sample = ""
+    part_2_input = ""
+
+    expected_part_1_sample_result = 0
+    expected_part_1_input_result = 0
+    expected_part_2_sample_result = 0
+    expected_part_2_input_result = 0
+
+    def run_part_1(self, input):
+        return 0
+
+    def run_part_2(self, input):
         return 0
 
     def setUp(self):
 
         try:
-            with open("days/{}/sample_part{}.txt".format(self.day, self.part)) as f:
-                self.sample = f.read()
+            with open("days/{}/sample_part{}.txt".format(self.day, 1)) as f:
+                self.part_1_sample = f.read()
         except FileNotFoundError:
             pass
         
         try:
-            with open("days/{}/input_part{}.txt".format(self.day, self.part)) as f:
-                self.input = f.read()
+            with open("days/{}/input_part{}.txt".format(self.day, 1)) as f:
+                self.part_1_input = f.read()
         except FileNotFoundError:
             pass
 
-    def validate_sample(self, input):
-        if not self.sample:
-            return
-        self.assertEqual(input, self.expected_sample_result, "Sample result is not correct, expected {} but got {}".format(self.expected_sample_result, input))
-    
-    def validate_input(self, input):
-        if not self.input:
-            return
-        self.assertEqual(input, self.expected_input_result, "Input result is not correct, expected {} but got {}".format(self.expected_input_result, input))
+        try:
+            with open("days/{}/sample_part{}.txt".format(self.day, 2)) as f:
+                self.part_2_sample = f.read()
+        except FileNotFoundError:
+            pass
+        
+        try:
+            with open("days/{}/input_part{}.txt".format(self.day, 2)) as f:
+                self.part_2_input = f.read()
+        except FileNotFoundError:
+            pass
 
-    def test_sample(self):
-        if not self.sample:
+    def test_part_1_sample(self):
+        if not self.part_1_sample:
             return
-        sample_result = self.run_day(self.sample)
-        self.validate_sample(sample_result)
+        sample_result = self.run_part_1(self.part_1_sample)
+        self.assertEqual(sample_result, self.expected_part_1_sample_result, "Part 1 sample result is not correct, expected {} but got {}".format(self.expected_part_1_sample_result, sample_result))
 
-    def test_input(self):
-        if not self.input:
+    def test_part_1_input(self):
+        if not self.part_1_input:
             return
-        input_result = self.run_day(self.input)
-        self.validate_input(input_result)
+        input_result = self.run_part_1(self.part_1_input)
+        self.assertEqual(input_result, self.expected_part_1_input_result, "Part 1 input result is not correct, expected {} but got {}".format(self.expected_part_1_input_result, input_result))
+
+    def test_part_2_sample(self):
+        if not self.part_2_sample:
+            return
+        sample_result = self.run_part_2(self.part_2_sample)
+        self.assertEqual(sample_result, self.expected_part_2_sample_result, "Part 2 sample result is not correct, expected {} but got {}".format(self.expected_part_2_sample_result, sample_result))
+
+    def test_part_2_input(self):
+        if not self.part_2_input:
+            return
+        input_result = self.run_part_2(self.part_2_input)
+        self.assertEqual(input_result, self.expected_part_2_input_result, "Part 2 input result is not correct, expected {} but got {}".format(self.expected_part_2_input_result, input_result))
 
 def run_tests():
     unittest.main()

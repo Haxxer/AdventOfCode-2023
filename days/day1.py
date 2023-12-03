@@ -1,12 +1,15 @@
 from base_test import BaseUnitTest, run_tests
 import re
 
-class Day1Part2(BaseUnitTest):
+class Day1(BaseUnitTest):
 
     day = "1"
-    part = "2"
-    expected_sample_result = 281
-    expected_input_result = 54649
+
+    expected_part_1_sample_result = 142
+    expected_part_1_input_result = 54081
+
+    expected_part_2_sample_result = 281
+    expected_part_2_input_result = 54649
 
     valid_text_numbers = {
         "one": 1,
@@ -20,7 +23,14 @@ class Day1Part2(BaseUnitTest):
         "nine": 9,
     }
 
-    def run_day(self, input):
+    def run_part_1(self, input):
+        regex = re.compile("\\d")
+        inputs = input.split("\n")
+        input_groups = [regex.findall(input) for input in inputs]
+        results = [int(group[0] + group[-1]) for group in input_groups]
+        return sum(results)
+
+    def run_part_2(self, input):
 
         inputs = input.split("\n")
 
